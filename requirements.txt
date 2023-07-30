@@ -1,0 +1,8 @@
+langchain==0.0.167
+nemoguardrails
+faiss-cpu
+gradio
+PyPDF2
+tiktoken
+openai
+python-dotenv
