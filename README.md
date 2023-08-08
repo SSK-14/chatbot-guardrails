@@ -7,7 +7,7 @@
 
 #### Clone the repo
  ```
- git clone https://github.com/SSK-14/chatbot-gradio.git
+ git clone https://github.com/SSK-14/chatbot-guardrails.git
  ```
 
 #### If running for the first time,
@@ -47,7 +47,7 @@ gradio app.py
 ## 📁 Project Structure
 
 ```
-Chatbot/
+chatbot-guardrails/
 │
 ├── config  // Contains all files for Guardrails 
 ├── knowledge_base // Documents need for the chatbot context
@@ -68,4 +68,4 @@ Chatbot/
 Contributions to this project are welcome! If you find any issues or have suggestions for improvement, please open an issue or submit a pull request on the project's GitHub repository.
 
 ## License 📝
-This project is licensed under the [MIT License](https://github.com/SSK-14/chatbot-gradio/blob/main/LICENSE). Feel free to use, modify, and distribute the code as per the terms of the license.
+This project is licensed under the [MIT License](https://github.com/SSK-14/chatbot-guardrails/blob/main/LICENSE). Feel free to use, modify, and distribute the code as per the terms of the license.
