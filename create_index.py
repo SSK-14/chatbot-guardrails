@@ -8,14 +8,15 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-'''Add the path to your pdf file'''
-reader = PdfReader('knowledge_base/gpt-4.pdf')
-
-raw_text = ''
-for i, page in enumerate(reader.pages):
-    text = page.extract_text()
-    if text:
-        raw_text += text
+'''Add the path to your pdf files'''
+for file in os.listdir("knowledge_base"):
+    file = open("knowledge_base/" + file, "rb")
+    reader = PdfReader(file)
+    raw_text = ''
+    for i, page in enumerate(reader.pages):
+        text = page.extract_text()
+        if text:
+            raw_text += text
 
 '''Divide the input data into chunks
     This will help in reducing the embedding size as we will se in the code
@@ -33,5 +34,5 @@ embeddings = OpenAIEmbeddings(openai_api_key=os.getenv("OPENAI_API_KEY"), disall
 vectorstore = FAISS.from_texts(texts, embeddings)
 
 
-with open("vectorstore/gpt-4.pkl", 'wb') as f:
+with open("vectorstore/index.pkl", 'wb') as f:
     pickle.dump(vectorstore, f)
