@@ -41,7 +41,7 @@ OPENAI_API_KEY = "Your openai API key"
 #### Run the Gradio app
 
 ```
-gradio chatbot.py
+gradio app.py
 ```
 
 ## 📁 Project Structure
@@ -52,7 +52,7 @@ Chatbot/
 ├── config  // Contains all files for Guardrails 
 ├── knowledge_base // Documents need for the chatbot context
 ├── vectorstore // Contains vector embedding pickle file
-├── chatbot.py // Main file to run
+├── app.py // Main file to run
 ├── create_index.py // Run this to update vectorstore
 ├── README.md
 └── requirements.txt
