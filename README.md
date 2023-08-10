@@ -3,6 +3,9 @@
 ## 📜 Description
 > The application showcases the integration Langchain with documents loaded and Nemo Guardrails. By combining these technologies, the application ensures advanced safety features and effective mitigation's, enhancing the overall security and reliability of the chatbot system.
 
+<img width="1896" alt="Example of prompt injection" src="https://github.com/SSK-14/chatbot-guardrails/assets/45158568/6af98b9a-27c1-455f-948f-2bdbe5d69fd2">
+
+
 ## 🛠️ Installation
 
 #### Clone the repo
