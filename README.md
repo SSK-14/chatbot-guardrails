@@ -41,6 +41,11 @@ $ source env/bin/activate
 OPENAI_API_KEY = "Your openai API key"
 ```
 
+#### Loading the Vectorstore 🗃️ 
+
+1. Keep you data or documentations in the knowledge_base folder
+2. Run the command - `python create_index.py`
+
 #### Run the Gradio app
 
 ```
@@ -61,11 +66,6 @@ chatbot-guardrails/
 └── requirements.txt
 
 ```
-
-## Loading the Vectorstore 🗃️ 
-
-1. Keep you data or documentations in the knowledge_base folder
-2. Run the command - `python create_index.py`
 
 ## Contributing 🤝
 Contributions to this project are welcome! If you find any issues or have suggestions for improvement, please open an issue or submit a pull request on the project's GitHub repository.
