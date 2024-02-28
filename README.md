@@ -44,7 +44,7 @@ OPENAI_API_KEY = "Your openai API key"
 #### Loading the Vectorstore 🗃️ 
 
 1. Keep you data or documentations in the knowledge_base folder
-2. Run the command - `python create_index.py`
+2. Run the command - `python create_index.py` <!-- Will create a vector database. -->
 
 #### Run the Gradio app
 
@@ -59,9 +59,8 @@ chatbot-guardrails/
 │
 ├── config  // Contains all files for Guardrails 
 ├── knowledge_base // Documents need for the chatbot context
-├── vectorstore // Contains vector embedding pickle file
 ├── app.py // Main file to run
-├── create_index.py // Run this to update vectorstore
+├── create_index.py // Run this to create vectorstore
 ├── README.md
 └── requirements.txt
 
