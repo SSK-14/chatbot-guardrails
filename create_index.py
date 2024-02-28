@@ -7,9 +7,9 @@ import chromadb
 from dotenv import load_dotenv
 load_dotenv()
 
-PATH_TO_KNOWLEDGE_BASE = "knowledge_base"
-COLLECTION_NAME = "aws_docs"
-VECTOR_DB_PATH = "/Users/sanjay/OSS/chatbot-gradio/vectorstore" # Change this to your own path
+PATH_TO_KNOWLEDGE_BASE = "knowledge_base" # Path where the PDFs are stored
+COLLECTION_NAME = "aws_docs" # Name of the collection
+VECTOR_DB_PATH = "./temp/vectorstore" # Change this to your own path
 
 embedding = OpenAIEmbeddings(openai_api_key=os.getenv("OPENAI_API_KEY"), disallowed_special=())
 

@@ -12,7 +12,7 @@ load_dotenv()
 os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
-prompt_template = """Use the following pieces of context to answer the question at the end. If you don't know the answer, 
+prompt_template = """You are an intelligent chatbot helping the user with Amazon Web Service (AWS) related questions. Use the following pieces of context about AWS to answer the question at the end. If you don't know the answer, 
 just say that you don't know, don't try to make up an answer.
 ### Context: {context} ###
 User Question: {question}

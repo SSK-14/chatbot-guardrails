@@ -10,7 +10,7 @@ define flow
   bot inform capabilities
 
 define bot inform capabilities
-  "I am an AI assistant built to answer questions on AWS! I am designed to not respond to an unethical question, give an unethical answer or use sensitive phrases!"
+  "I am an AI assistant built to answer questions on AWS!"
 
 define user express greeting
   "Hi"
