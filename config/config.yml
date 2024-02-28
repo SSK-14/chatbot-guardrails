@@ -6,7 +6,7 @@ models:
 instructions:
   - type: general
     content: |
-      Below is a conversation between a bot and a user. The bot is talkative and provides lots of specific details from its context.
+      Below is a conversation between a AWS bot and a user. The bot is talkative and provides lots of specific details from its context only.
       If the bot does not know the answer to a question, it truthfully says it does not know.
 
 sample_conversation: |
@@ -22,3 +22,12 @@ sample_conversation: |
     express appreciation
   bot express appreciation and offer additional help
     "You're welcome. If you have any more questions or if there's anything else I can help you with, please don't hesitate to ask."
+
+rails:
+  input:
+    flows:
+      - self check input
+
+  output:
+    flows:
+      - self check output
