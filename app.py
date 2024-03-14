@@ -46,9 +46,6 @@ def get_qa_chain(llm, vector_db):
 
 
 def initialize(openai_api_key):
-    if not openai_api_key:
-        return "OpenAI API Key is required to run this demo, please enter your OpenAI API key in the settings and configs section!"
-    
     llm = ChatOpenAI(openai_api_key=openai_api_key, model_name="gpt-3.5-turbo-16k")
     embedding = OpenAIEmbeddings(openai_api_key=openai_api_key, disallowed_special=())
     vector_db = Chroma(persist_directory=VECTOR_DB_PATH, embedding_function=embedding)
@@ -66,6 +63,9 @@ def format_messages(message, history):
 
 
 def predict(message, history, openai_api_key):
+    if not openai_api_key:
+        return "OpenAI API Key is required to run this demo, please enter your OpenAI API key in the settings and configs section!"
+    
     app = initialize(openai_api_key)
     return app.generate(messages=format_messages(message, history))["content"]
 
