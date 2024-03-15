@@ -2,9 +2,9 @@ langchain==0.1.11
 langchain-community==0.0.28
 langchain-openai
 chromadb==0.4.23
-nemoguardrails==0.7.1
-gradio==4.19.2
+nemoguardrails==0.8.0
+gradio==4.21.0
 pypdf
 tiktoken
-openai==1.12.0
+openai==1.14.0
 python-dotenv

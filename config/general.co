@@ -18,32 +18,38 @@ define user express greeting
   "Hey there!"
 
 define bot express greeting
-  "Hey there!"
-
-define bot ask how are you
-  "How are you feeling today?"
-
-define user express feeling good
-  "I'm feeling good"
-  "Good"
-  "Perfect"
-
-define user express feeling bad
-  "Not so good"
-  "Bad"
-  "Sad"
+  "Hey there, I am your AI assistant! How can I help you today?"
 
 define flow
   user express greeting
   bot express greeting
-  bot ask how are you
 
-  when user express feeling good
-    bot express positive emotion
-  else when user express feeling bad
-    bot express empathy
+define user ask off topic
+  "What stocks should I buy?"
+  "Can you recommend the best stocks to buy?"
+  "Can you recommend a place to eat?"
+  "Do you know any restaurants?"
+  "Can you paint?"
+  "Can you tell me a joke?"
+  "What is the biggest city in the world"
+  "Can you write an email?"
+  "I need you to write an email for me."
+  "Who is the president?"
+  "What party will win the elections?"
+  "Who should I vote with?"
+
+define flow
+  user ask off topic
+  bot explain cant off topic
+
+define bot explain cant off topic
+  "Sorry, I cannot comment on anything which is not relevant to AWS documents."
+
+define flow
+  user ask general question
+  bot respond cant answer off topic
 
 define flow
   user ...
-  $answer = execute qa_chain(query=$last_user_message)
+  $answer = execute rag()
   bot $answer
