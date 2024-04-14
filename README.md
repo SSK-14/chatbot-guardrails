@@ -7,8 +7,24 @@
 ## 📜 Description
 > The application showcases the integration Langchain with documents loaded and Nemo Guardrails. By combining these technologies, the application ensures advanced safety features and effective mitigation's, enhancing the overall security and reliability of the chatbot system.
 
-<img width="1896" alt="Example of prompt injection" src="https://github.com/SSK-14/chatbot-guardrails/assets/45158568/6af98b9a-27c1-455f-948f-2bdbe5d69fd2">
+## 🚀 Demo
 
+[AWS Guard Chatbot](ssk-14-aws-guard-bot.hf.space)
+
+```
+Note: It has only minimal guards added from NeMo for demo,
+So its still prone to prompt injection 
+```
+
+| Without Guardrails |
+|------------|
+| ![Without Guardrails](https://github.com/SSK-14/chatbot-guardrails/assets/45158568/19945cb6-9346-451d-90ef-0cebe34400c9) |
+
+| With Guardrails |
+|------------|
+| ![With Guardrails](https://github.com/SSK-14/chatbot-guardrails/assets/45158568/0cdc99cf-43b3-4028-958a-605511b35664) |
+
+---
 
 ## 🛠️ Installation
 
