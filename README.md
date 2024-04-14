@@ -9,7 +9,7 @@
 
 ## 🚀 Demo
 
-[AWS Guard Chatbot](ssk-14-aws-guard-bot.hf.space)
+[AWS Guard Chatbot](https://ssk-14-aws-guard-bot.hf.space/)
 
 ```
 Note: It has only minimal guards added from NeMo for demo,
