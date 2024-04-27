@@ -12,8 +12,7 @@
 [AWS Guard Chatbot](https://ssk-14-aws-guard-bot.hf.space/)
 
 ```
-Note: It has only minimal guards added from NeMo for demo,
-So its still prone to prompt injection 
+Note: It has only minimal guards added from NeMo for demo
 ```
 
 | Without Guardrails |
