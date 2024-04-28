@@ -48,13 +48,7 @@ source env/bin/activate
 pip3 install -r requirements.txt
 ```
 
-#### Activate your virtual environment
-
-```
-source env/bin/activate
-```
-
-#### Create an .env file in the root with
+#### Create an .env file from .env.example
 
 ```
 OPENAI_API_KEY = "Your openai API key"
@@ -66,8 +60,8 @@ GOOGLE_API_KEY = "Your Gemini API key"
 
 1. Keep you data or documentations in the knowledge_base folder
 2. Get an [Gemini API key](https://makersuite.google.com/app/apikey) or [OpenAI API key](https://platform.openai.com/account/api-keys)
-3. Update the embedding function in `create_index.py`
-4. Run the command - `python create_index.py` <!-- Will create a vector database. -->
+3. Update the constants & vectorstore client in `vectorstore.py` <!-- Update env if using qdrant cloud >
+4. Run the command - `python vectorstore.py` <!-- Will create a vector database. -->
 
 #### Run the Gradio app
 
