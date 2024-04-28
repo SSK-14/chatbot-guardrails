@@ -1,3 +1,16 @@
+---
+title: AWS Guard Bot
+emoji: 🚀
+colorFrom: blue
+colorTo: red
+sdk: gradio
+sdk_version: 4.26.0
+app_file: app.py
+pinned: false
+license: mit
+short_description: Experiment on langchain with NeMo Guardrails
+---
+
 # AWS Chatbot with Langchain and Nemo Guardrails
 
 ![OpenAI](https://img.shields.io/badge/OpenAI-412991.svg?style=for-the-badge&logo=OpenAI&logoColor=white)
@@ -60,7 +73,7 @@ GOOGLE_API_KEY = "Your Gemini API key"
 
 1. Keep you data or documentations in the knowledge_base folder
 2. Get an [Gemini API key](https://makersuite.google.com/app/apikey) or [OpenAI API key](https://platform.openai.com/account/api-keys)
-3. Update the constants & vectorstore client in `vectorstore.py` <!-- Update env if using qdrant cloud >
+3. Update the constants & vectorstore client in `vectorstore.py` <!-- Update env if using qdrant cloud. -->
 4. Run the command - `python vectorstore.py` <!-- Will create a vector database. -->
 
 #### Run the Gradio app
