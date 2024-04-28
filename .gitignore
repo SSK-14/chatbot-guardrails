@@ -5,3 +5,4 @@ env
 temp
 .cache
 .DS_Store
+qdrant

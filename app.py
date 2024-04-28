@@ -2,26 +2,20 @@ import os
 import gradio as gr
 from dotenv import load_dotenv
 from nemoguardrails import LLMRails, RailsConfig
-from langchain_openai import ChatOpenAI, OpenAIEmbeddings
-from langchain_google_genai import ChatGoogleGenerativeAI, GoogleGenerativeAIEmbeddings
-from langchain_community.vectorstores import Chroma
+from langchain_openai import ChatOpenAI
+from langchain_google_genai import ChatGoogleGenerativeAI
 from chain import qa_chain
+from vectorstore import qdrant_client
 
 load_dotenv()
 
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
-VECTOR_DB_PATH = "./vectorstore/"
 MODEL_API_KEY = os.getenv("OPENAI_API_KEY") or ""
     
-def vector_search(provider, model_api_key, message):
-    if provider == "Gemini":
-        embedding = GoogleGenerativeAIEmbeddings(google_api_key=model_api_key, model="models/embedding-001", task_type="retrieval_query")
-    else:
-        embedding = OpenAIEmbeddings(openai_api_key=model_api_key, model="text-embedding-3-large", disallowed_special=())
-    
-    vector_db = Chroma(persist_directory=VECTOR_DB_PATH+provider, embedding_function=embedding)
-    documents = vector_db.similarity_search(message)
-    context = '\n'.join([doc.page_content for doc in documents])
+def vector_search(message):
+    documents = qdrant_client.query(collection_name="aws_faq", query_text=message, limit=4)
+    print(documents)
+    context = '\n'.join([doc.metadata["document"] for doc in documents])
     return context
 
 def initialize_app(llm):
@@ -42,7 +36,7 @@ async def predict(message, _, model_api_key, provider, is_guardrails):
     else:
         llm = ChatOpenAI(openai_api_key=model_api_key, model_name="gpt-3.5-turbo-16k")
 
-    context = vector_search(provider, model_api_key, message)
+    context = vector_search(message)
 
     if not is_guardrails:
         return await qa_chain(llm, message, context)
@@ -52,8 +46,8 @@ async def predict(message, _, model_api_key, provider, is_guardrails):
     return response["content"]
 
 
-chat_textbox = gr.Textbox(placeholder="Hello, Ask any question related to AWS", container=False, scale=6)
-examples = [["How to host my website in AWS?"], ["Tell me about AWS CodeStar?"]]
+chat_textbox = gr.Textbox(placeholder="Hello, Ask any question related to AWS EC2 or S3", container=False, scale=6)
+examples = [["How reliable is Amazon S3?"], ["How do I get started with EC2 Capacity Blocks?"]]
 
 with gr.Blocks() as demo:
     bot = gr.Chatbot(height=600, render=False)
