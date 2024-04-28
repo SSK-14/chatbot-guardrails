@@ -13,7 +13,7 @@ qdrant_client = QdrantClient(path=VECTOR_DB_PATH)
 
 # If using qdrant cloud, use the following code
 # qdrant_client = QdrantClient(
-#     os.getenv("QDRANT_URLS"),
+#     os.getenv("QDRANT_URL"),
 #     api_key=os.getenv("QDRANT_API_KEY"),
 # )
 
