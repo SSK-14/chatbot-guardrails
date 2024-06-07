@@ -4,7 +4,7 @@ langchain-google-genai
 langchain-openai
 qdrant-client[fastembed]==1.9.0
 nemoguardrails==0.8.0
-gradio==4.21.0
+gradio==4.36.0
 pypdf
 tiktoken
 openai==1.14.0
