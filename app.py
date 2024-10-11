@@ -14,7 +14,7 @@ MODEL_API_KEY = os.getenv("OPENAI_API_KEY") or os.getenv("GOOGLE_API_KEY") or ""
 OLLAMA_BASE_URL = os.getenv("OLLAMA_BASE_URL") or "http://localhost:11434/v1"
 
 MODEL_LIST = {
-    "openai": "gpt-4",
+    "openai": "gpt-4o-mini",
     "gemini": "gemini-1.5-pro-002",
     "ollama": "llama3.2"
 }

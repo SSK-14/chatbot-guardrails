@@ -30,11 +30,11 @@ Note: It has only minimal guards added from NeMo for demo
 
 | Without Guardrails |
 |------------|
-| ![Without Guardrails](https://github.com/SSK-14/chatbot-guardrails/assets/45158568/19945cb6-9346-451d-90ef-0cebe34400c9) |
+| ![Without Guardrails](./demo/without-guardrails.png) |
 
 | With Guardrails |
 |------------|
-| ![With Guardrails](https://github.com/SSK-14/chatbot-guardrails/assets/45158568/0cdc99cf-43b3-4028-958a-605511b35664) |
+| ![With Guardrails](./demo/with-guardrails.png) |
 
 ---
 
