@@ -9,13 +9,13 @@ PATH_TO_KNOWLEDGE_BASE = "knowledge_base" # Path where the PDFs are stored
 COLLECTION_NAME = "aws_faq" # Name of the collection
 VECTOR_DB_PATH = "./qdrant" # Change this to your own path
 
-qdrant_client = QdrantClient(path=VECTOR_DB_PATH)
+# qdrant_client = QdrantClient(path=VECTOR_DB_PATH)
 
 # If using qdrant cloud, use the following code
-# qdrant_client = QdrantClient(
-#     os.getenv("QDRANT_URL"),
-#     api_key=os.getenv("QDRANT_API_KEY"),
-# )
+qdrant_client = QdrantClient(
+    os.getenv("QDRANT_URL"),
+    api_key=os.getenv("QDRANT_API_KEY"),
+)
 
 def ingest_embeddings():
     metadatas = []

@@ -15,8 +15,7 @@ OLLAMA_BASE_URL = os.getenv("OLLAMA_BASE_URL") or "http://localhost:11434/v1"
 
 MODEL_LIST = {
     "openai": "gpt-4o-mini",
-    "gemini": "gemini-1.5-pro-002",
-    "ollama": "llama3.2"
+    "gemini": "gemini-1.5-pro-002"
 }
 DEFAULT_MODEL = "openai"
 
@@ -44,6 +43,8 @@ async def predict(message, _, model_api_key, provider, is_guardrails):
         llm = ChatOpenAI(openai_api_key=model_api_key, model_name=MODEL_LIST[provider])
     elif provider == "ollama":
         llm = ChatOpenAI(openai_api_key="", openai_api_base=OLLAMA_BASE_URL, model_name=MODEL_LIST[provider])
+    else:
+        return "Invalid provider selected, please select a valid provider from the dropdown!"
 
     context = vector_search(message)
 
