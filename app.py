@@ -10,8 +10,16 @@ from vectorstore import qdrant_client
 load_dotenv()
 
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
-MODEL_API_KEY = os.getenv("OPENAI_API_KEY") or ""
-    
+MODEL_API_KEY = os.getenv("OPENAI_API_KEY") or os.getenv("GOOGLE_API_KEY") or ""
+OLLAMA_BASE_URL = os.getenv("OLLAMA_BASE_URL") or "http://localhost:11434/v1"
+
+MODEL_LIST = {
+    "openai": "gpt-4",
+    "gemini": "gemini-1.5-pro-002",
+    "ollama": "llama3.2"
+}
+DEFAULT_MODEL = "openai"
+
 def vector_search(message):
     documents = qdrant_client.query(collection_name="aws_faq", query_text=message, limit=4)
     context = '\n'.join([doc.metadata["document"] for doc in documents])
@@ -30,10 +38,12 @@ async def predict(message, _, model_api_key, provider, is_guardrails):
     if not model_api_key:
         return "OpenAI/Gemini API Key is required to run this demo, please enter your OpenAI API key in the settings and configs section!"
 
-    if provider == "Gemini":
-        llm = ChatGoogleGenerativeAI(google_api_key=model_api_key, model="gemini-1.5-pro-002")
-    else:
-        llm = ChatOpenAI(openai_api_key=model_api_key, model_name="gpt-4")
+    if provider == "gemini":
+        llm = ChatGoogleGenerativeAI(google_api_key=model_api_key, model=MODEL_LIST[provider])
+    elif provider == "openai":
+        llm = ChatOpenAI(openai_api_key=model_api_key, model_name=MODEL_LIST[provider])
+    elif provider == "ollama":
+        llm = ChatOpenAI(openai_api_key="", openai_api_base=OLLAMA_BASE_URL, model_name=MODEL_LIST[provider])
 
     context = vector_search(message)
 
@@ -58,7 +68,7 @@ with gr.Blocks() as demo:
             with gr.Group():
                 with gr.Row():
                     guardrail = gr.Checkbox(label="Guardrails", info="Enables NeMo Guardrails",value=True, scale=1)
-                    provider = gr.Dropdown(["OpenAI", "Gemini"], value="OpenAI", show_label=False, scale=1)
+                    provider = gr.Dropdown(MODEL_LIST.keys(), value=DEFAULT_MODEL, show_label=False, scale=1)
                     model_key = gr.Textbox(placeholder="Enter your OpenAI/Gemini API key", type="password", value=MODEL_API_KEY, show_label=False, scale=3)
 
     gr.ChatInterface(
