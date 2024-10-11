@@ -24,7 +24,7 @@ def ingest_embeddings():
             pdf_path = os.path.join(PATH_TO_KNOWLEDGE_BASE, file)
             loader = PyPDFLoader(pdf_path)
             documents.extend(loader.load())
-    text_splitter = RecursiveCharacterTextSplitter(separators=["\n\n"], chunk_size=300, chunk_overlap=50)
+    text_splitter = RecursiveCharacterTextSplitter(separators=["\n\n"], chunk_size=400, chunk_overlap=50)
     chunked_documents = text_splitter.split_documents(documents)
     chunks, metadata, ids = zip(*[(chunk.page_content, chunk.metadata, i+1) for i, chunk in enumerate(chunked_documents)])
     try:

@@ -14,7 +14,6 @@ MODEL_API_KEY = os.getenv("OPENAI_API_KEY") or ""
     
 def vector_search(message):
     documents = qdrant_client.query(collection_name="aws_faq", query_text=message, limit=4)
-    print(documents)
     context = '\n'.join([doc.metadata["document"] for doc in documents])
     return context
 
@@ -45,12 +44,7 @@ async def predict(message, _, model_api_key, provider, is_guardrails):
     response = await app.generate_async(messages=format_messages(message, context))
     return response["content"]
 
-
-chat_textbox = gr.Textbox(placeholder="Hello, Ask any question related to AWS EC2 or S3", container=False, scale=6)
-examples = [["How reliable is Amazon S3?"], ["How do I get started with EC2 Capacity Blocks?"]]
-
 with gr.Blocks() as demo:
-    bot = gr.Chatbot(height=600, render=False)
     gr.HTML("""<div style='height: 10px'></div>""")
     with gr.Row():
         with gr.Column(scale=1):
@@ -63,18 +57,18 @@ with gr.Blocks() as demo:
         with gr.Column(scale=2):
             with gr.Group():
                 with gr.Row():
-                    guardrail = gr.Checkbox(label="Guardrails", info="Enables NeMo Guardrails",value=True, scale=0.5)
+                    guardrail = gr.Checkbox(label="Guardrails", info="Enables NeMo Guardrails",value=True, scale=1)
                     provider = gr.Dropdown(["OpenAI", "Gemini"], value="OpenAI", show_label=False, scale=1)
-                    model_key = gr.Textbox(placeholder="Enter your OpenAI/Gemini API key", type="password", value=MODEL_API_KEY, show_label=False, scale=2)
-                    
+                    model_key = gr.Textbox(placeholder="Enter your OpenAI/Gemini API key", type="password", value=MODEL_API_KEY, show_label=False, scale=3)
 
     gr.ChatInterface(
-        predict, 
-        chatbot=bot, 
-        textbox=chat_textbox,  
-        examples=examples, 
-        theme="soft", 
+        predict,
+        chatbot=gr.Chatbot(height=600, type="messages", layout="panel"),
+        theme="soft",
+        examples=[["How reliable is Amazon S3 with data availability ?"], ["How do I get started with EC2 Capacity Blocks ?"]],
+        type="messages",
         additional_inputs=[model_key, provider, guardrail]
     )
 
-demo.launch()
+if __name__ == "__main__":
+    demo.launch()

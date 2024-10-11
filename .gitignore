@@ -4,5 +4,6 @@ env
 .pytest_cache
 temp
 .cache
-.DS_Store
+.
+.gradio
 qdrant
