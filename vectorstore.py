@@ -1,6 +1,6 @@
 import os
-from langchain_community.document_loaders import PyPDFLoader
-from langchain.text_splitter import RecursiveCharacterTextSplitter
+import PyPDF2
+from langchain_text_splitters import RecursiveCharacterTextSplitter
 from qdrant_client import QdrantClient
 from dotenv import load_dotenv
 load_dotenv()
@@ -18,14 +18,20 @@ qdrant_client = QdrantClient(path=VECTOR_DB_PATH)
 # )
 
 def ingest_embeddings():
-    documents = []
+    metadatas = []
+    text = []
     for file in os.listdir(PATH_TO_KNOWLEDGE_BASE):
         if file.endswith('.pdf'):
             pdf_path = os.path.join(PATH_TO_KNOWLEDGE_BASE, file)
-            loader = PyPDFLoader(pdf_path)
-            documents.extend(loader.load())
+            pdf_reader = PyPDF2.PdfReader(pdf_path)
+            page_number = 1
+            for page in pdf_reader.pages:
+                text.append(page.extract_text())
+                metadatas.append({"page": page_number, "file": file})
+                page_number += 1
+                
     text_splitter = RecursiveCharacterTextSplitter(separators=["\n\n"], chunk_size=400, chunk_overlap=50)
-    chunked_documents = text_splitter.split_documents(documents)
+    chunked_documents = text_splitter.create_documents(text, metadatas=metadatas)
     chunks, metadata, ids = zip(*[(chunk.page_content, chunk.metadata, i+1) for i, chunk in enumerate(chunked_documents)])
     try:
         qdrant_client.add(

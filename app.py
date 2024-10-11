@@ -31,14 +31,14 @@ async def predict(message, _, model_api_key, provider, is_guardrails):
         return "OpenAI/Gemini API Key is required to run this demo, please enter your OpenAI API key in the settings and configs section!"
 
     if provider == "Gemini":
-        llm = ChatGoogleGenerativeAI(google_api_key=model_api_key, model="gemini-pro")
+        llm = ChatGoogleGenerativeAI(google_api_key=model_api_key, model="gemini-1.5-pro-002")
     else:
-        llm = ChatOpenAI(openai_api_key=model_api_key, model_name="gpt-3.5-turbo-16k")
+        llm = ChatOpenAI(openai_api_key=model_api_key, model_name="gpt-4")
 
     context = vector_search(message)
 
     if not is_guardrails:
-        return await qa_chain(llm, message, context)
+        return qa_chain(llm, message, context)
     
     app = initialize_app(llm)
     response = await app.generate_async(messages=format_messages(message, context))
