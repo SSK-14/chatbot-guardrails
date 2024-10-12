@@ -4,5 +4,4 @@ langchain-text-splitters
 qdrant-client[fastembed]==1.12.0
 nemoguardrails==0.9.1.1
 gradio==5.0.1
-pypdf2
 python-dotenv

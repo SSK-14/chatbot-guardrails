@@ -1,17 +1,4 @@
----
-title: NeMo Guardrails Chatbot
-emoji: 🚀
-colorFrom: blue
-colorTo: red
-sdk: gradio
-sdk_version: 5.0.1
-app_file: app.py
-pinned: false
-license: mit
-short_description: Experiment on langchain with NeMo Guardrails
----
-
-# NeMo Guardrails Chatbot | Build Documentation AI with Nemo Guardrails
+# 💂🏼 Build your Documentation AI with Nemo Guardrails
 
 ![OpenAI](https://img.shields.io/badge/OpenAI-412991.svg?style=for-the-badge&logo=OpenAI&logoColor=white)
 ![Google Gemini](https://img.shields.io/badge/Google%20Gemini-8E75B2.svg?style=for-the-badge&logo=Google-Gemini&logoColor=white)
@@ -63,6 +50,8 @@ pip3 install -r requirements.txt
 
 #### Create an .env file from .env.example
 
+Get an [Gemini API key](https://makersuite.google.com/app/apikey) or [OpenAI API key](https://platform.openai.com/account/api-keys) or [Groq API key](https://console.groq.com) or Use local models using [Ollama](https://ollama.ai/).
+
 Make sure you replace your key rightly.
 ```
 OPENAI_API_KEY = "Your openai API key"
@@ -74,10 +63,9 @@ GROQ_API_KEY = "Your Groq API Key"
 
 #### Loading the Vectorstore 🗃️ 
 
-1. Keep you data or documentations in the knowledge_base folder
-2. Get an [Gemini API key](https://makersuite.google.com/app/apikey) or [OpenAI API key](https://platform.openai.com/account/api-keys) or [Groq API key](https://console.groq.com) or Use local models using [Ollama](https://ollama.ai/).
-3. Update the constants & vectorstore client in `vectorstore.py` <!-- Update env if using qdrant cloud. -->
-4. Run the command - `python vectorstore.py` <!-- Will create a vector database. -->
+1. Update the constants & vectorstore client in `vectorstore.py` <!-- Update env if using qdrant cloud. -->
+- Change GITHUB_URL and BRANCH for your preferred github repo.
+2. Run the command - `python vectorstore.py` <!-- Will create a vector database. -->
 
 #### Run the Gradio app
 
