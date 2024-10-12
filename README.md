@@ -5,15 +5,11 @@
 ![Nvidia Nemo](https://img.shields.io/badge/NVIDIA-76B900.svg?style=for-the-badge&logo=NVIDIA&logoColor=white)
 
 ## 📜 Description
-> The application showcases the integration of github repos or documentations with llm powered assistance with Nemo Guardrails. By combining these technologies, the application ensures advanced safety features and effective mitigation's, enhancing the overall security and reliability of the chatbot system.
+The application showcases the integration of github repos or documentations with llm powered assistance with Nemo Guardrails. By combining these technologies, the application ensures advanced safety features and effective mitigation's, enhancing the overall security and reliability of the chatbot system.
 
 ## 🚀 Demo
 
 [NeMo Guardrails Chatbot](https://ssk-14-nemo-ai.hf.space/)
-
-```
-Note: It has only minimal guards added from NeMo for demo
-```
 
 | Without Guardrails |
 |------------|
@@ -25,7 +21,7 @@ Note: It has only minimal guards added from NeMo for demo
 
 ---
 
-## 🛠️ Installation
+## 🛠️ Run The Application
 
 #### Clone the repo
 ```
@@ -54,10 +50,9 @@ Get an [Gemini API key](https://makersuite.google.com/app/apikey) or [OpenAI API
 
 Make sure you replace your key rightly.
 ```
+# You can use your preferred models.
 OPENAI_API_KEY = "Your openai API key"
-or
 GOOGLE_API_KEY = "Your Gemini API key"
-or
 GROQ_API_KEY = "Your Groq API Key"
 ```
 
@@ -78,10 +73,9 @@ gradio app.py
 ```
 chatbot-guardrails/
 │
-├── config  // Contains all files for Guardrails 
-├── knowledge_base // Documents need for the chatbot context
+├── config  // Contains all files for Guardrails
 ├── app.py // Main file to run
-├── create_index.py // Run this to create vectorstore
+├── vectorstore.py // Run this to create vectorstore
 ├── README.md
 └── requirements.txt
 
