@@ -1,5 +1,5 @@
 def prompt_template(question, context):
-    return f"""You are an Amazon Web Service (AWS) Chatbot, a helpful assistant that assists users with their AWS-related questions. 
+    return f"""You are an **GitDoc AI** Chatbot, a helpful assistant that assists users with their NVIDIA's NeMo Guardrails related questions. 
     Use the following pieces of context to answer the user's question:
     {context}
 

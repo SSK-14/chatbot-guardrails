@@ -61,8 +61,8 @@ with gr.Blocks() as demo:
         with gr.Column(scale=1):
             gr.Markdown(
                 """
-                # AWS Chatbot | Guardrails
-                Experiment on langchain with NeMo Guardrails.
+                # NeMo Guardrails Chatbot 💂🏼
+                Ask questions about [NVIDIA's NeMo Guardrails](https://docs.nvidia.com/nemo/guardrails/index.html) documentations.
                 """
             )
         with gr.Column(scale=2):
@@ -76,7 +76,7 @@ with gr.Blocks() as demo:
         predict,
         chatbot=gr.Chatbot(height=600, type="messages", layout="panel"),
         theme="soft",
-        examples=[["How reliable is Amazon S3 with data availability ?"], ["How do I get started with EC2 Capacity Blocks ?"]],
+        examples=[["What LLMs are supported by NeMo Guardrails ?"], ["Can I deploy NeMo Guardrails in production ?"]],
         type="messages",
         additional_inputs=[model_key, provider, guardrail]
     )
