@@ -5,7 +5,7 @@ from nemoguardrails import LLMRails, RailsConfig
 from langchain_openai import ChatOpenAI
 from langchain_google_genai import ChatGoogleGenerativeAI
 from chain import qa_chain
-from vectorstore import qdrant_client
+from vectorstore import vector_search
 
 load_dotenv()
 
@@ -21,11 +21,6 @@ MODEL_LIST = {
     "groq": "llama-3.2-11b-text-preview"
 }
 DEFAULT_MODEL = "openai"
-
-def vector_search(message):
-    documents = qdrant_client.query(collection_name="aws_faq", query_text=message, limit=4)
-    context = '\n'.join([doc.metadata["document"] for doc in documents])
-    return context
 
 def initialize_app(llm):
     config = RailsConfig.from_path("config")
@@ -73,9 +68,9 @@ with gr.Blocks() as demo:
         with gr.Column(scale=2):
             with gr.Group():
                 with gr.Row():
-                    guardrail = gr.Checkbox(label="Guardrails", info="Enables NeMo Guardrails",value=True, scale=1)
-                    provider = gr.Dropdown(MODEL_LIST.keys(), value=DEFAULT_MODEL, show_label=False, scale=1)
-                    model_key = gr.Textbox(placeholder="Enter your OpenAI/Gemini API key", type="password", value=MODEL_API_KEY, show_label=False, scale=3)
+                    guardrail = gr.Checkbox(label="Enable NeMo Guardrails", value=True, scale=1)
+                    provider = gr.Dropdown(MODEL_LIST.keys(), value=DEFAULT_MODEL, show_label=False, scale=2)
+                    model_key = gr.Textbox(placeholder="Enter your OpenAI/Gemini API key", type="password", value=MODEL_API_KEY, show_label=False, scale=4)
 
     gr.ChatInterface(
         predict,
