@@ -22,21 +22,17 @@ def initialize_app(llm):
     app = LLMRails(config=config, llm=llm)
     return app
 
-def format_messages(message, relevant_chunks):
-    messages = [{"role": "context", "content": {"relevant_chunks": relevant_chunks}}, {"role": "user", "content": message}]
-    return messages
-
 async def predict(message, _, model_api_key, provider, is_guardrails):
     if not model_api_key:
         return "OpenAI/Gemini API Key is required to run this demo, please enter your OpenAI API key in the settings and configs section!"
-
     llm = initialize_llm(model_api_key, provider, MODEL_LIST[provider])
-    context = vector_search(message)
     if not is_guardrails:
+        context = vector_search(message)
         return qa_chain(llm, message, context)
-    app = initialize_app(llm)
-    response = await app.generate_async(messages=format_messages(message, context))
-    return response["content"]
+    else:
+        app = initialize_app(llm)
+        response = await app.generate_async(messages=[{"role": "user", "content": message}])
+        return response["content"]
 
 with gr.Blocks() as demo:
     gr.HTML("""<div style='height: 10px'></div>""")

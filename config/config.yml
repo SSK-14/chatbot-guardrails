@@ -32,3 +32,4 @@ rails:
     flows:
       - self check output
       - check blocked terms
+      - self check facts

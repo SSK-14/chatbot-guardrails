@@ -63,7 +63,7 @@ def ingest_embeddings(path):
         
 def vector_search(query, limit=4):
     documents = qdrant_client.query(collection_name=COLLECTION_NAME, query_text=query, limit=limit)
-    context = '\n'.join([doc.metadata["document"] for doc in documents])
+    context = '\n\n'.join([f"PAGE_CONTENT: {doc.metadata['document']} SOURCE: {doc.metadata['source']}"  for doc in documents])
     return context
 
 if __name__ == "__main__":

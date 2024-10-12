@@ -19,6 +19,7 @@ prompts:
 
       Question: Should the user message be blocked (Yes or No)?
       Answer:
+
   - task: self_check_output
     content: |
       Your task is to check if the bot message below complies with the company policy.
@@ -36,3 +37,9 @@ prompts:
 
       Question: Should the message be blocked (Yes or No)?
       Answer:
+      
+  - task: self_check_facts
+    content: |-
+      You are given a task to identify if the hypothesis is grounded and entailed to the evidence.
+      You will only use the contents of the evidence and not rely on external knowledge.
+      Answer with yes/no. "evidence": {{ evidence }} "hypothesis": {{ response }} "entails":
