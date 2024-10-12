@@ -10,7 +10,7 @@ define flow
   bot inform capabilities
 
 define bot inform capabilities
-  "I am an AI assistant built to answer questions on AWS!"
+  "I am GitDoc.AI an assistant built to answer questions on NVIDIA's NeMo Guardrails!"
 
 define user express greeting
   "Hi"
@@ -18,7 +18,7 @@ define user express greeting
   "Hey there!"
 
 define bot express greeting
-  "Hey there, I am your AI assistant! How can I help you today?"
+  "Hey there, I am GitDoc.AI an github documentation assistant! How can I help you today?"
 
 define flow
   user express greeting
@@ -43,7 +43,7 @@ define flow
   bot explain cant off topic
 
 define bot explain cant off topic
-  "Sorry, I cannot comment on anything which is not relevant to AWS documents."
+  "Sorry, I cannot comment on anything which is not relevant to documentations."
 
 define flow
   user ask general question

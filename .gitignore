@@ -6,4 +6,5 @@ temp
 .cache
 .DS_Store
 .gradio
+docs
 qdrant

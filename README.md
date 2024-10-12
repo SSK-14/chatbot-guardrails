@@ -1,28 +1,15 @@
----
-title: AWS Guard Bot
-emoji: 🚀
-colorFrom: blue
-colorTo: red
-sdk: gradio
-sdk_version: 5.0.1
-app_file: app.py
-pinned: false
-license: mit
-short_description: Experiment on langchain with NeMo Guardrails
----
-
-# AWS Chatbot with Langchain and Nemo Guardrails
+# 💂🏼 Build your Documentation AI with Nemo Guardrails
 
 ![OpenAI](https://img.shields.io/badge/OpenAI-412991.svg?style=for-the-badge&logo=OpenAI&logoColor=white)
 ![Google Gemini](https://img.shields.io/badge/Google%20Gemini-8E75B2.svg?style=for-the-badge&logo=Google-Gemini&logoColor=white)
 ![Nvidia Nemo](https://img.shields.io/badge/NVIDIA-76B900.svg?style=for-the-badge&logo=NVIDIA&logoColor=white)
 
 ## 📜 Description
-> The application showcases the integration Langchain with documents loaded and Nemo Guardrails. By combining these technologies, the application ensures advanced safety features and effective mitigation's, enhancing the overall security and reliability of the chatbot system.
+> The application showcases the integration of github repos or documentations with llm powered assistance with Nemo Guardrails. By combining these technologies, the application ensures advanced safety features and effective mitigation's, enhancing the overall security and reliability of the chatbot system.
 
 ## 🚀 Demo
 
-[AWS Guard Chatbot](https://ssk-14-aws-guard-bot.hf.space/)
+[NeMo Guardrails Chatbot](https://ssk-14-nemo-ai.hf.space/)
 
 ```
 Note: It has only minimal guards added from NeMo for demo
@@ -63,18 +50,22 @@ pip3 install -r requirements.txt
 
 #### Create an .env file from .env.example
 
+Get an [Gemini API key](https://makersuite.google.com/app/apikey) or [OpenAI API key](https://platform.openai.com/account/api-keys) or [Groq API key](https://console.groq.com) or Use local models using [Ollama](https://ollama.ai/).
+
+Make sure you replace your key rightly.
 ```
 OPENAI_API_KEY = "Your openai API key"
 or
 GOOGLE_API_KEY = "Your Gemini API key"
+or
+GROQ_API_KEY = "Your Groq API Key"
 ```
 
 #### Loading the Vectorstore 🗃️ 
 
-1. Keep you data or documentations in the knowledge_base folder
-2. Get an [Gemini API key](https://makersuite.google.com/app/apikey) or [OpenAI API key](https://platform.openai.com/account/api-keys)
-3. Update the constants & vectorstore client in `vectorstore.py` <!-- Update env if using qdrant cloud. -->
-4. Run the command - `python vectorstore.py` <!-- Will create a vector database. -->
+1. Update the constants & vectorstore client in `vectorstore.py` <!-- Update env if using qdrant cloud. -->
+- Change GITHUB_URL and BRANCH for your preferred github repo.
+2. Run the command - `python vectorstore.py` <!-- Will create a vector database. -->
 
 #### Run the Gradio app
 
