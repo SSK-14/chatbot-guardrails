@@ -10,13 +10,15 @@ from vectorstore import qdrant_client
 load_dotenv()
 
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
-MODEL_API_KEY = os.getenv("OPENAI_API_KEY") or os.getenv("GOOGLE_API_KEY") or ""
+MODEL_API_KEY = os.getenv("OPENAI_API_KEY") or os.getenv("GOOGLE_API_KEY") or os.getenv("GROQ_API_KEY") or ""
 OLLAMA_BASE_URL = os.getenv("OLLAMA_BASE_URL") or "http://localhost:11434/v1"
+GROQ_BASE_URL = "https://api.groq.com/openai/v1"
 
 MODEL_LIST = {
     "openai": "gpt-4o-mini",
     "gemini": "gemini-1.5-pro-002",
-    "ollama": "llama3.2"
+    "ollama": "llama3.2",
+    "groq": "llama-3.2-11b-text-preview"
 }
 DEFAULT_MODEL = "openai"
 
@@ -42,8 +44,12 @@ async def predict(message, _, model_api_key, provider, is_guardrails):
         llm = ChatGoogleGenerativeAI(google_api_key=model_api_key, model=MODEL_LIST[provider])
     elif provider == "openai":
         llm = ChatOpenAI(openai_api_key=model_api_key, model_name=MODEL_LIST[provider])
+    elif provider == "groq":
+        llm = ChatOpenAI(openai_api_key=model_api_key, openai_api_base=GROQ_BASE_URL, model_name=MODEL_LIST[provider])
     elif provider == "ollama":
         llm = ChatOpenAI(openai_api_key="", openai_api_base=OLLAMA_BASE_URL, model_name=MODEL_LIST[provider])
+    else:
+        return "Invalid provider selected. Please select a valid provider."
 
     context = vector_search(message)
 
