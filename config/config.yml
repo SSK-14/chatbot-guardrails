@@ -27,6 +27,7 @@ rails:
   input:
     flows:
       - self check input
+      - check blocked terms
 
   output:
     flows:

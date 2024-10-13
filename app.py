@@ -31,8 +31,11 @@ async def predict(message, _, model_api_key, provider, is_guardrails):
         return qa_chain(llm, message, context)
     else:
         app = initialize_app(llm)
-        response = await app.generate_async(messages=[{"role": "user", "content": message}])
-        return response["content"]
+        messages = [{"role": "user", "content": message}]
+        options = {"output_vars": ["triggered_input_rail", "triggered_output_rail"]}
+        output = await app.generate_async(messages=messages, options=options)
+        print(output.output_data)
+        return output.response[0]['content']
 
 with gr.Blocks() as demo:
     gr.HTML("""<div style='height: 10px'></div>""")

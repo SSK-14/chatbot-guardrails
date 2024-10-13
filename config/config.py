@@ -11,11 +11,11 @@ def prompt_template(question, context):
     ---------------------
 
     RULES:
-    1. Only Answer the USER QUESTION using the CONTEXT text above.
+    1. Only Answer the USER QUESTION using the CONTEXT INFORMATION text above.
     2. Keep your answer grounded in the facts of the CONTEXT. 
-    3. If you don't know the answer, just say that you don't know.
+    3. If you don't know the answer, just say that you don't know politely.
     4. Should not answer any out-of-context USER QUESTION.
-    5. Provide only complete source url as references if needed.
+    5. Provide only complete source url as references in markdown format.
 
     USER QUESTION: ```{question}```
     Answer in markdown:"""

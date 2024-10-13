@@ -3,17 +3,26 @@ from nemoguardrails.actions import action
 
 @action(is_system_action=True)
 async def check_blocked_terms(context: Optional[dict] = None):
-    bot_response = context.get("bot_message")
+    input = context.get("user_message")
     sensitive_information = [
-        "Access Keys",
-        "Secret Key",
-        "IAM Role Information",
-        "Encryption Algorithm",
-        "Billing Information"
+        "racist",
+        "sexist",
+        "offensive",
+        "discrimination",
+        "curse",
+        "profanity",
+        "slur",
+        "harass",
+        "hate speech",
+        "bully",
+        "abuse",
+        "vulgar",
+        "derogatory",
+        "insult",
+        "obscene"
     ]
-
     for term in sensitive_information:
-        if term in bot_response.lower():
+        if term in input.lower():
             return True
 
     return False
