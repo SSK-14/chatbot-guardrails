@@ -8,14 +8,16 @@ from vectorstore import vector_search
 load_dotenv()
 
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
-MODEL_API_KEY = os.getenv("OPENAI_API_KEY") or os.getenv("GOOGLE_API_KEY") or os.getenv("GROQ_API_KEY") or ""
+MODEL_API_KEY = os.getenv("MODEL_API_KEY") or ""
+
+# Choose/Replace any specific model for the provider.
 MODEL_LIST = {
     "openai": "gpt-4o-mini",
     "gemini": "gemini-1.5-pro-002",
     "ollama": "llama3.2",
     "groq": "llama-3.2-11b-text-preview"
 }
-DEFAULT_MODEL = "openai"
+DEFAULT_MODEL = "openai" # Choose your default model here.
 
 def initialize_app(llm):
     config = RailsConfig.from_path("config")
@@ -52,7 +54,7 @@ with gr.Blocks() as demo:
                 with gr.Row():
                     guardrail = gr.Checkbox(label="Enable NeMo Guardrails", value=True, scale=1)
                     provider = gr.Dropdown(MODEL_LIST.keys(), value=DEFAULT_MODEL, show_label=False, scale=2)
-                    model_key = gr.Textbox(placeholder="Enter your OpenAI/Gemini API key", type="password", value=MODEL_API_KEY, show_label=False, scale=4)
+                    model_key = gr.Textbox(placeholder="Enter your OpenAI/Gemini/Groq API key", type="password", value=MODEL_API_KEY, show_label=False, scale=4)
 
     gr.ChatInterface(
         predict,

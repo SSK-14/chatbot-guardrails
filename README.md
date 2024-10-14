@@ -51,9 +51,7 @@ Get an [Gemini API key](https://makersuite.google.com/app/apikey) or [OpenAI API
 Make sure you replace your key rightly.
 ```
 # You can use your preferred models.
-OPENAI_API_KEY = "Your openai API key"
-GOOGLE_API_KEY = "Your Gemini API key"
-GROQ_API_KEY = "Your Groq API Key"
+MODEL_API_KEY = "Enter your OpenAI/Gemini/Groq API key"
 ```
 
 #### Loading the Vectorstore 🗃️ 
