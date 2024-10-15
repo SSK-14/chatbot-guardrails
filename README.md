@@ -13,11 +13,11 @@ The application showcases the integration of github repos or documentations with
 
 | Without Guardrails |
 |------------|
-| ![Without Guardrails](./demo/without-guardrails.png) |
+| ![Without Guardrails](./images/without-guardrails.png) |
 
 | With Guardrails |
 |------------|
-| ![With Guardrails](./demo/with-guardrails.png) |
+| ![With Guardrails](./images/with-guardrails.png) |
 
 ---
 
