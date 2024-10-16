@@ -2,15 +2,14 @@ import gradio as gr
 
 # Placeholder for chat UI
 chat_placeholder = """
-<br>
-<h1 style="text-align: center; background: black; border: 2px solid #f97316; padding: 10px 20px; border-radius: 15px;">
+<div style="margin: 40px 20px;">
+<h1 style="text-align: center; background: #18181c; border: 2px solid #f97316; padding: 10px 20px; border-radius: 15px;">
     Welcome to NeMo Guardrails Documentation AI
 </h1>
-<p style="text-align: center; margin: 10px auto; max-width: 400px">
+<p style="font-size: 16px; text-align: center; margin: 10px auto; max-width: 650px">
     Explore seamless integration of GitHub repositories and documentation with LLM-powered assistance, enhanced by NeMo Guardrails for advanced safety and security.
-    <br>
-    💻 <a href="https://github.com/SSK-14/chatbot-guardrails target="_blank">View Code</a>
 </p>
+</div>
 """
 
 # Chat examples for user guidance
@@ -27,9 +26,6 @@ a {
 .avatar-image {
     margin: 0;
 }
-.examples {
-    display: None;
-}
 """
 
 # Function to create a chatbot with custom settings
@@ -40,14 +36,28 @@ def chat():
         elem_classes="chatbot", 
         placeholder=chat_placeholder, 
         layout="panel", 
-        avatar_images=("./images/user.png", "./images/ai.png")
+        avatar_images=("./images/user.png", "./images/ai.png"),
     )
 
 # Function to render the header
 def header():
     return gr.Markdown(
         """
+        <br>\n
         # NeMo Guardrails Chatbot 💂🏼
         Ask questions about [NVIDIA's NeMo Guardrails](https://docs.nvidia.com/nemo/guardrails/index.html) documentations.
         """
     )
+
+def model_settings(model_list):
+    with gr.Group():
+        with gr.Row():
+            guardrail = gr.Checkbox(label="Enable NeMo Guardrails", value=True, scale=1)
+            provider = gr.Dropdown(model_list.keys(), show_label=False, scale=2)
+            model_key = gr.Textbox(
+                placeholder="Enter your OpenAI/Gemini/Groq API key", 
+                type="password",
+                show_label=False, 
+                scale=4
+            )
+    return model_key, provider, guardrail

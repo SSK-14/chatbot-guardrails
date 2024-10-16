@@ -15,7 +15,7 @@ def prompt_template(question, context):
     2. Keep your answer grounded in the facts of the CONTEXT. 
     3. If you don't know the answer, just say that you don't know politely.
     4. Should not answer any out-of-context USER QUESTION.
-    5. Provide only complete source url as references in markdown format.
+    5. Add references only if needed in markdown format.
 
     USER QUESTION: ```{question}```
     Answer in markdown:"""
