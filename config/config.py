@@ -1,6 +1,25 @@
+import os
 from nemoguardrails import LLMRails
 from nemoguardrails.actions.actions import ActionResult
-from vectorstore import vector_search
+from qdrant_client import QdrantClient
+from dotenv import load_dotenv
+load_dotenv()
+
+COLLECTION_NAME = "nemo-docs" # Name of the collection
+VECTOR_DB_PATH = "./qdrant" # Change this to your own path
+
+qdrant_client = QdrantClient(path=VECTOR_DB_PATH)
+
+# If using qdrant cloud, use the following code
+# qdrant_client = QdrantClient(
+#     os.getenv("QDRANT_URL"),
+#     api_key=os.getenv("QDRANT_API_KEY"),
+# )
+  
+def vector_search(query, limit=4):
+    documents = qdrant_client.query(collection_name=COLLECTION_NAME, query_text=query, limit=limit)
+    context = '\n\n'.join([f"PAGE_CONTENT: {doc.metadata['document']} SOURCE: {doc.metadata['source']}"  for doc in documents])
+    return context
 
 def prompt_template(question, context):
     return f"""You are an **GitDoc AI** Chatbot, a helpful assistant that assists users with their 

@@ -56,7 +56,7 @@ MODEL_API_KEY = "Enter your OpenAI/Gemini/Groq API key"
 
 #### Loading the Vectorstore 🗃️ 
 
-1. Update the constants & vectorstore client in `vectorstore.py` <!-- Update env if using qdrant cloud. -->
+1. Update the constants & vectorstore client in `vectorstore.py` and `config/config.py` <!-- Update env if using qdrant cloud. -->
 - Change GITHUB_URL and BRANCH for your preferred github repo.
 2. Run the command - `python vectorstore.py` <!-- Will create a vector database. -->
 
@@ -64,6 +64,13 @@ MODEL_API_KEY = "Enter your OpenAI/Gemini/Groq API key"
 
 ```
 gradio app.py
+```
+
+#### Run using NeMo Guardrails UI
+
+- Update the `config/config.yml` file with models and `export OPENAI_API_KEY=sk...` <!-- Update based on model provider. -->
+```
+nemoguardrails server 
 ```
 
 ## 📁 Project Structure
@@ -76,7 +83,6 @@ chatbot-guardrails/
 ├── vectorstore.py // Run this to create vectorstore
 ├── README.md
 └── requirements.txt
-
 ```
 
 ## Contributing 🤝
