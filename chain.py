@@ -1,6 +1,6 @@
 from langchain_openai import ChatOpenAI
 from langchain_google_genai import ChatGoogleGenerativeAI
-from vectorstore import vector_search
+from nemo.config import vector_search
 
 OLLAMA_BASE_URL = "http://localhost:11434/v1"
 GROQ_BASE_URL = "https://api.groq.com/openai/v1"
@@ -26,6 +26,6 @@ def prompt_template(question, context):
     USER QUESTION: ```{question}```
     Answer in markdown:"""
 
-def qa_chain(llm, message):
+def rag_chain(llm, message):
     context = vector_search(message)
     return llm.invoke(prompt_template(message, context)).content

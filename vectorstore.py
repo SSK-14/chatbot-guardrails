@@ -6,17 +6,13 @@ from dotenv import load_dotenv
 load_dotenv()
 
 COLLECTION_NAME = "nemo-docs" # Name of the collection
-VECTOR_DB_PATH = "./qdrant" # Change this to your own path
 GITHUB_URL = "https://github.com/NVIDIA/NeMo-Guardrails"
 BRANCH = "develop"
 
-qdrant_client = QdrantClient(path=VECTOR_DB_PATH)
-
-# If using qdrant cloud, use the following code
-# qdrant_client = QdrantClient(
-#     os.getenv("QDRANT_URL"),
-#     api_key=os.getenv("QDRANT_API_KEY"),
-# )
+qdrant_client = QdrantClient(
+    os.getenv("QDRANT_URL"),
+    api_key=os.getenv("QDRANT_API_KEY"),
+)
 
 def load_github_docs(document_url, branch='master'):
     filename = os.path.basename(document_url.rstrip('/').strip())
@@ -60,11 +56,6 @@ def ingest_embeddings(path):
         print("Collection created and persisted")
     except Exception as error:
         print(f"Error: {error}")
-        
-def vector_search(query, limit=4):
-    documents = qdrant_client.query(collection_name=COLLECTION_NAME, query_text=query, limit=limit)
-    context = '\n\n'.join([f"PAGE_CONTENT: {doc.metadata['document']} SOURCE: {doc.metadata['source']}"  for doc in documents])
-    return context
 
 if __name__ == "__main__":
     file_path = load_github_docs(GITHUB_URL, BRANCH)

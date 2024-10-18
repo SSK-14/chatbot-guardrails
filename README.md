@@ -46,19 +46,24 @@ pip3 install -r requirements.txt
 
 #### Create an .env file from .env.example
 
-Get an [Gemini API key](https://makersuite.google.com/app/apikey) or [OpenAI API key](https://platform.openai.com/account/api-keys) or [Groq API key](https://console.groq.com) or Use local models using [Ollama](https://ollama.ai/).
+- Get an [Gemini API key](https://makersuite.google.com/app/apikey) or [OpenAI API key](https://platform.openai.com/account/api-keys) or [Groq API key](https://console.groq.com) or Use local models using [Ollama](https://ollama.ai/).
+
+- Setup a vector database [Qdrant Cloud](https://cloud.qdrant.io/).
 
 Make sure you replace your key rightly.
 ```
 # You can use your preferred models.
-MODEL_API_KEY = "Enter your OpenAI/Gemini/Groq API key"
+MODEL_API_KEY = "Your OpenAI/Gemini/Groq API Key"
+QDRANT_URL = "Your Qdrant cloud cluster URL"
+#If you are using qdrant cloud
+QDRANT_API_KEY = "Your Qdrant API Key"
 ```
 
 #### Loading the Vectorstore 🗃️ 
 
-1. Update the constants & vectorstore client in `vectorstore.py` and `config/config.py` <!-- Update env if using qdrant cloud. -->
+1. Update the constants in `vectorstore.py` and `nemo/config.py` <!-- Update env if with qdrant url and key. -->
 - Change GITHUB_URL and BRANCH for your preferred github repo.
-2. Run the command - `python vectorstore.py` <!-- Will create a vector database. -->
+2. Run the command - `python vectorstore.py` <!-- Will create a vector collection. -->
 
 #### Run the Gradio app
 
@@ -68,9 +73,9 @@ gradio app.py
 
 #### Run using NeMo Guardrails UI
 
-- Update the `config/config.yml` file with models and `export OPENAI_API_KEY=sk...` <!-- Update based on model provider. -->
+- Update the `nemo/config.yml` file with models and `export OPENAI_API_KEY=sk...` <!-- Update based on model provider. -->
 ```
-nemoguardrails server 
+nemoguardrails server --config nemo
 ```
 
 ## 📁 Project Structure
@@ -78,8 +83,8 @@ nemoguardrails server
 ```
 chatbot-guardrails/
 │
-├── config  // Contains all files for Guardrails
-├── app.py // Main file to run
+├── nemo/  // Contains all files for Guardrails
+├── app.py // Main file to run for gradio UI
 ├── vectorstore.py // Run this to create vectorstore
 ├── README.md
 └── requirements.txt

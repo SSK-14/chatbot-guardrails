@@ -2,7 +2,7 @@ import os
 import gradio as gr
 from dotenv import load_dotenv
 from nemoguardrails import LLMRails, RailsConfig
-from chain import initialize_llm, qa_chain
+from chain import initialize_llm, rag_chain
 from ui import chat, header, chat_examples, custom_css
 
 load_dotenv()
@@ -15,7 +15,7 @@ MODEL_API_KEY = os.getenv("MODEL_API_KEY") or ""
 IS_GUARDRAILS = True
 
 llm = initialize_llm(MODEL_API_KEY, MODEL_PROVIDER, MODEL_NAME)
-config = RailsConfig.from_path("config")
+config = RailsConfig.from_path("nemo")
 app = LLMRails(config=config, llm=llm)
 
 # Prediction function to generate responses
@@ -25,14 +25,13 @@ async def predict(message, history):
         options = {"output_vars": ["triggered_input_rail", "triggered_output_rail"]}
         output = await app.generate_async(messages=history, options=options)
         info = app.explain()
-        print(info)
         info.print_llm_calls_summary()
         warning_message = output.output_data["triggered_input_rail"] or output.output_data["triggered_output_rail"]
         if warning_message:
             gr.Warning(f"Guardrail triggered: {warning_message}")
         return output.response[0]['content']
     else:
-        return qa_chain(llm, message)
+        return rag_chain(llm, message)
 
 # Gradio UI setup
 with gr.Blocks(css=custom_css) as demo:
