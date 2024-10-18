@@ -43,21 +43,25 @@ def chat():
 def header():
     return gr.Markdown(
         """
-        <br>\n
         # NeMo Guardrails Chatbot 💂🏼
         Ask questions about [NVIDIA's NeMo Guardrails](https://docs.nvidia.com/nemo/guardrails/index.html) documentations.
         """
     )
 
-def model_settings(model_list):
-    with gr.Group():
-        with gr.Row():
-            guardrail = gr.Checkbox(label="Enable NeMo Guardrails", value=True, scale=1)
-            provider = gr.Dropdown(model_list.keys(), show_label=False, scale=2)
-            model_key = gr.Textbox(
-                placeholder="Enter your OpenAI/Gemini/Groq API key", 
-                type="password",
-                show_label=False, 
-                scale=4
-            )
-    return model_key, provider, guardrail
+def demo_header_settings(model_list):
+    gr.HTML("""<div style='height: 10px'></div>""")
+    with gr.Row():
+        with gr.Column(scale=1):
+            header()
+        with gr.Column(scale=2):
+            with gr.Row():
+                guardrail = gr.Checkbox(label="Enable NeMo Guardrails", value=True, scale=1)
+                provider = gr.Dropdown(list(model_list.keys()), value=list(model_list.keys())[0], show_label=False, scale=2)
+                model_key = gr.Textbox(
+                    placeholder="Enter your OpenAI/Gemini/Groq API key", 
+                    type="password",
+                    show_label=False, 
+                    scale=4
+                )
+                start_chat = gr.Button("Initialize Chat")
+        return model_key, provider, guardrail, start_chat

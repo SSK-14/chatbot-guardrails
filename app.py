@@ -35,6 +35,7 @@ async def predict(message, history):
 
 # Gradio UI setup
 with gr.Blocks(css=custom_css) as demo:
+    gr.HTML("""<div style='height: 10px'></div>""")
     header()
     gr.ChatInterface(
         predict,
